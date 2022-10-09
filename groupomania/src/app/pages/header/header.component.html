@@ -1,0 +1,12 @@
+<header class="toolbar">
+  <h1>
+    <img src="../../../assets/img/logo-header.png" alt="Logo Groupomania">
+  </h1>
+  <div *ngIf="isAuth$ | async" class="navigation">
+    <nav>
+      <a routerLink="accueil" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><i class="fa-solid fa-house-user"></i> Accueil</a>
+      <a id="deconnexion" (click)="onLogout()"><i class="fa-solid fa-rocket"></i></a>
+    </nav>
+    <button (click)="onAddNewPublication()">Créer une nouvelle publication</button>
+  </div>
+</header>

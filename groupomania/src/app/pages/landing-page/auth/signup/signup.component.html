@@ -1,0 +1,10 @@
+<main>
+  <h1>Inscription</h1>
+
+  <form [formGroup]="form" (ngSubmit)="onSignUp(model)">
+    <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+    <p>*: champs obligatoires</p>
+    <button type="submit" class="btn btn-default">Inscription</button>
+  </form>
+  <a [routerLink]="['/connexion']">Déjà inscrit ? </a>
+</main>

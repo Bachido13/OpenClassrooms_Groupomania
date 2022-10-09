@@ -1,0 +1,21 @@
+<div class="form-card">
+    <form [formGroup]="publicationForm" *ngIf="formInstanciated">
+        <div class="form-group">
+            <label for="title">Titre</label>
+            <input id="title" type="text" formControlName="title">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" type="text" formControlName="description" rows="4">
+            </textarea>
+        </div>
+        <div class="form-group">
+            <input id="input-image" type="file" accept="image/*" #imageInput (change)="onFileAdded($event)">
+            <button mat-raised-button color="primary" (click)="imageInput.click()">Ajouter une photo</button>
+            <img [src]="imagePreview" *ngIf="imagePreview" style="max-height: 100px;display:block;margin-top:10px">
+        </div>
+        <div class="action-buttons">
+            <button type="submit" (click)="onSubmitForm()" [disabled]="publicationForm.invalid">Enregistrer</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,140 @@
+.publication-card {
+  box-sizing: border-box;
+  width: 100%; 
+  background-color: hsla(0, 100%, 92%, 0.25);
+  
+  h2 {
+    color: #FD2D01;
+    text-align: center;
+    padding: 1rem 0.6rem;
+    ;
+
+  }
+
+  button {
+    background: transparent;      
+    border: none;
+  }
+
+  .liens {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 0;
+
+    li {
+      padding: 5px;
+      display: flex;
+      background-color: #4e5166cc;
+      border-radius: 1.2rem;
+      font-size: 1rem;
+      align-items: center;
+      box-shadow: 3px 3px 3px silver;
+    }
+
+    .fa-circle-arrow-left {
+      color: red;
+      background-color: white;
+      border-radius: 50%;
+    }
+
+    .fa-pen-to-square {
+      color: orange;
+    }
+
+    button { 
+      color: white;
+      margin-right: 10px;
+      font-size: 1rem;
+
+      &:hover {
+        color: #FD2D01;
+        font-weight: bold;
+      }
+    } 
+  }
+
+  #date {
+    padding-left: 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  #description {
+    text-align: justify;
+    font-size: 1.25rem;
+    padding: 0 1rem;
+  }
+
+  #like {
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 1.5rem;
+
+    button {
+      color: green;
+      padding-bottom: 1.2rem;
+    }
+  }
+}
+
+@media screen and (min-width:768px) {
+  .publication-card {
+    box-sizing: border-box;
+    box-shadow: silver 4px 4px 20px;
+
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    .liens {
+      font-size: 1.5rem;
+
+      li {
+      font-size: 1.5rem;
+
+        button {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    #date {
+      font-size: 1.2rem;
+    }
+
+    #image {
+      display: flex;
+      justify-content: center;
+    }
+
+    #description {
+      font-size: 1.5rem;
+    }
+
+    #like button {
+      font-size: 1.5rem;
+    }
+  }
+
+}
+
+@media screen and (min-width:1024px) { 
+  
+  .publication-card {
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px 30px;
+    h2 {
+      margin-bottom: 0;
+    }
+    p {
+      font-weight: 300;
+      font-size: 16px;
+    }
+  }
+}

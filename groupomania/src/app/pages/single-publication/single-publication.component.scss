@@ -1,0 +1,55 @@
+.publication-card {  
+    background-color: #FFD7D7;
+    border-radius: 20px;
+
+    .userPseudo {
+
+    }
+
+    .titre {
+        text-align: center;
+
+    }
+
+    .date {
+
+    }
+
+    .description {
+        text-align: center;
+    }
+
+    .imagePublication {
+        width: 100%;
+    }
+
+    .boutons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0;
+
+        button {
+            margin: 5px 0px;
+        }
+
+        .pousseLevé {
+            background: none;
+            border: none;
+            color: white;
+        }
+
+        .logo {
+            width: 10%;
+            border-radius: 50%;
+        }
+
+        .detail {
+            background-color: #4e5166;
+            font-weight: bold;
+            color: #FD2D01;
+            height: 15px;
+        }
+    }
+}
+    

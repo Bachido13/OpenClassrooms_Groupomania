@@ -1,0 +1,54 @@
+.form-card,
+.publication-card {
+    box-sizing: border-box;
+    width: 50%;
+    margin: 20px auto;
+    padding: 10px 30px;
+    box-shadow: lightgray 4px 4px 20px;
+}
+
+.publication-card {
+    img {
+        width: 100%;
+    }
+
+    h2 {
+        margin-bottom: 0;
+        color: #FFD7D7;
+    }
+
+    p {
+        font-weight: 300;
+        font-size: 16px;
+    }
+
+    label {
+        color: #4E5166;
+    }
+}
+
+.form-group {
+    margin: 10px auto;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+input,
+textarea {
+    width: 50%;
+}
+
+#input-image {
+    display: none;
+}
+
+.action-buttons {
+    width: 100%;
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+}

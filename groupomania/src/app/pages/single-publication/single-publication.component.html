@@ -1,0 +1,12 @@
+<div class="publication-card">
+    <p class="userPseudo">{{ publication.userPseudo }}</p>
+    <h2 class="titre">{{ publication.title | titlecase }}</h2>
+    <p class="date">Mis en ligne {{ publication.createdDate | date: 'à HH:mm, le d MMM YYYY' }}</p>
+    <p class="description">{{ publication.description }}</p>
+    <img [src]="publication.imageUrl" [alt]="publication.title" class="imagePublication">
+    <p class="boutons">
+        <button (click)="onLike()" class="pousseLevé"><i class="fa-solid fa-thumbs-up"></i> {{ publication.likes }}</button>
+        <img src="../../../assets/img/fav-icon.png" alt="logo de groupomania" class="logo">
+        <button (click)="onViewPublication(publication._id)" class="detail">Détails</button>
+    </p>
+</div>
