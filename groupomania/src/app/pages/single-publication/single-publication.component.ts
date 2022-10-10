@@ -15,7 +15,6 @@ export class PublicationComponent implements OnInit {
   @Input() 
   publication!: Publication;
   buttonText!: string;
-  loading!: boolean;
   publication$!: Observable<Publication>;
   userId!: string;
   userPseudo!: string;
@@ -35,19 +34,6 @@ export class PublicationComponent implements OnInit {
     this.userPseudo = this.publication.author?.pseudo;
     this.date = this.publication.createdDate;
     this.buttonText = 'Like !';
-   // this.userId = this.auth.getUserId();
-    //this.loading = true;
-    //this.publication$ = this.route.params.pipe(
-    //  map(params => params['id']),
-    //  switchMap(id => this.publicationsService.getPublicationById(id)),
-    //  tap(publication => {
-     //   console.log(publication);    
-    //    this.loading = false;
-     //   if (publication.usersLiked.find(user => user === this.userId)) {
-    //      this.liked = true;
-    //    }
-    //  })
-   // )
   }
   
   onLike() {

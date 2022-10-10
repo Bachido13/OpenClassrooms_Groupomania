@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent {
 
-  loading!: boolean;
   errorMsg!: string;
+  showError!: string;
 
   constructor(private authService: AuthService,
               private router: Router) { }
@@ -59,12 +59,13 @@ export class SignupComponent {
     this.authService.createUser(user.email, user.password, user.pseudo).pipe(
       switchMap(() => this.authService.loginUser(user.email, user.password)),
       tap(() => {
-        this.loading = false;
         this.router.navigate(['/accueil']);
       }),
       catchError(error => {
-        this.loading = false;
+        console.log(error);
+        
         this.errorMsg = error.message;
+        this.showError = error.error.error
         return EMPTY;
       })
     ).subscribe();

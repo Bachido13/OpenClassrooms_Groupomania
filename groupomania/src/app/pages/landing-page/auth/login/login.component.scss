@@ -1,11 +1,40 @@
 ::ng-deep {
 
     .mb-3 {
-        border: solid 3px red;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+
+        .form-label {
+            font-size: 1rem;
+        }
+
+        formly-field-input {
+            margin-top: 5px;
+        }
 
         input {
-            border: solid 3px red;
+            border: solid 1px red;
+            background-color: hsla(233, 13%, 35%, 0.3);
         }
+
+        input:focus {
+            background-color: white;
+        }
+
+        formly-validation-message {
+            font-size: 1rem;
+            color: red;
+        }
+    }
+
+    .input-email{
+        margin-bottom: 10px;
+    }
+
+    .input-password {
+        margin-top: 10px;
     }
 }
 
@@ -16,7 +45,15 @@ main {
     justify-content: center;
 
     h1 {
+        font-size: 1.25rem;
+        text-align: center;
+        margin-top: 1.75rem;
+        color: #4E5166;
+    }
+
+    h2 {
         color: #FD2D01;
+        margin-top: 0px;
     }
 
     form {
@@ -27,17 +64,17 @@ main {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        width: 70%;
+        box-shadow: 3px 3px 10px #4E5166;
 
-        
             formly-form {
                 display: inline-block;
                 font-size: 1.5rem;
-                color: #FD2D01;
                 justify-content: center;
                 align-items: center;
             }
 
-            p {
+            #nota-bene {
                 font-size: 0.8rem;
                 color: #FD2D01;
             }
@@ -45,6 +82,19 @@ main {
             button {
                 width: 60%;
                 border-radius: 10px;
+                background-color: #4E5166;
+                color: white;
+                box-shadow: 2px 2px 5px #4E5166;
+            }
+
+            button:active {
+                color: #FD2D01;
+            }
+
+            #showError {
+                font-size: 1.25rem;
+                width: 110%;
+                text-align: center;
             }
     }
 
@@ -55,5 +105,79 @@ main {
         border-bottom-right-radius: 10px;
         text-decoration: none;
         color: #FD2D01;
+        box-shadow: 3px 3px 3px #4E5166;
+    }
+}
+
+@media screen and (min-width:375px) {
+    
+}
+
+@media screen and (min-width:425px) {
+    
+    button {
+        max-width: 220px;
+    }
+}
+
+@media screen and (min-width:768px) {
+
+    ::ng-deep {
+
+        .mb-3 {
+            .form-label{
+                font-size: 1.25rem;
+            }
+            input {
+                height: 30px;
+                width: 120%;
+                font-size: 1.15rem;
+            }
+        }
+    }
+
+    main {
+        form {
+            #nota-bene {
+                font-size: 1.15rem;
+            }
+        }
+    }
+
+    button {
+        height: 2rem;
+        font-size: 1.5rem;
+        text-shadow: 1px 1px 2px silver;
+        font-weight: bold;
+    }
+
+    a {
+        font-size: 1.15rem;
+    }
+}
+
+@media screen and (min-width:1024px) {
+    
+    form {
+        flex-direction: row;
+    }
+}
+
+@media screen and (min-width:1440px) {
+    
+    main {
+        form{
+            width: 40%;
+            height: 300px;
+        }
+    }
+}
+
+@media screen and (min-width:2560px) {
+    
+    main {
+        form {
+            width: 25%;
+        }
     }
 }

@@ -12,8 +12,8 @@ import { catchError, EMPTY, tap } from 'rxjs';
 })
 export class LoginComponent {
 
-  loading!: boolean;
   errorMsg!: string;
+  showError!: string;
 
   constructor(private authService: AuthService,
               private router: Router) { }
@@ -29,7 +29,7 @@ export class LoginComponent {
         key: 'email',
         type: 'input',
         props: {
-          label: 'Votre adresse mail',
+          label: 'Votre adresse mail:',
           placeholder: 'Saisir votre email',
           required: true,
         }
@@ -40,7 +40,7 @@ export class LoginComponent {
         type: 'input',
         props: {
           type: 'password',
-          label: 'Votre mot de passe',
+          label: 'Votre mot-de-passe:',
           placeholder: 'Saisir votre mot de passe',
           required: true,
         }
@@ -52,11 +52,13 @@ export class LoginComponent {
   onLogin(user: any) {
     this.authService.loginUser(user.email, user.password).pipe(
       tap(() => {
-        this.loading = false;
         this.router.navigate(['/accueil']);
       }),
       catchError(error => {
-        this.loading = false;
+        console.log(error.error.error);
+
+        this.showError = error.error.error;
+        
         this.errorMsg = error.message;
         return EMPTY;
       })
