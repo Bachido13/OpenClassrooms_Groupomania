@@ -12,46 +12,50 @@ import { map, Observable, of, switchMap, take, tap } from 'rxjs';
 })
 export class PublicationComponent implements OnInit {
   
-  @Input() publication!: Publication;
+  @Input() 
+  publication!: Publication;
   buttonText!: string;
   loading!: boolean;
   publication$!: Observable<Publication>;
   userId!: string;
+  userPseudo!: string;
+  date!: Date;
   liked!: boolean;
   imagePreview!: string;
 
   constructor(private publicationsService: PublicationsService,
               private auth: AuthService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute
+              ) { }
 
   ngOnInit() {
+    console.log(this.publication);
+    
+    this.userPseudo = this.publication.author?.pseudo;
+    this.date = this.publication.createdDate;
     this.buttonText = 'Like !';
-    this.userId = this.auth.getUserId();
-    this.loading = true;
-    this.publication$ = this.route.params.pipe(
-      map(params => params['id']),
-      switchMap(id => this.publicationsService.getPublicationById(id)),
-      tap(publication => {
-        this.loading = false;
-        if (publication.usersLiked.find(user => user === this.userId)) {
-          this.liked = true;
-        }
-      })
-    )
+   // this.userId = this.auth.getUserId();
+    //this.loading = true;
+    //this.publication$ = this.route.params.pipe(
+    //  map(params => params['id']),
+    //  switchMap(id => this.publicationsService.getPublicationById(id)),
+    //  tap(publication => {
+     //   console.log(publication);    
+    //    this.loading = false;
+     //   if (publication.usersLiked.find(user => user === this.userId)) {
+    //      this.liked = true;
+    //    }
+    //  })
+   // )
   }
   
-
   onLike() {
-    this.publication$.pipe(
-      take(1),
-      switchMap((publication: Publication) => this.publicationsService.likePublication(publication._id, !this.liked).pipe(
+    this.publicationsService.likePublication(this.publication._id, !this.liked).pipe(
         tap(liked => {
           this.liked = liked;
         }),
-        map(liked => ({ ...publication, likes: liked ? publication.likes + 1 : publication.likes - 1})),
-        tap(publication => this.publication$ = of(publication))
-      )),
+        map(liked => ({ ...this.publication, likes: liked ? this.publication.likes + 1 : this.publication.likes - 1}))
     ).subscribe();
   }
 

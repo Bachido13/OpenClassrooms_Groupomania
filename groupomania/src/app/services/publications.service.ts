@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Publication } from '../core/models/publications.model';
 import { Observable, catchError, throwError, tap, Subject, of, mapTo } from 'rxjs';
 import { AuthService } from './auth.services';
-import { Comment } from '../core/models/comment.model';
 
 
 @Injectable({
@@ -78,18 +77,5 @@ export class PublicationsService {
             catchError(error => throwError(error.error.message))
         );
     }
-
-    addComment(publicationId: string, comment: Comment): Observable<Publication> {
-        return this.http.post<Publication>(`http://localhost:3000/api/publication/comment/${publicationId}`, comment);
-    }
-
-    modifyComment(publicationId: string, comment: Comment): Observable<Publication> {
-        return this.http.put<Publication>(`http://localhost:3000/api/publication/modifyComment/${publicationId}`, comment);
-    }
-
-    //deleteComment(publicationId: string, commentId: any): Observable<Comment>  {
-    //   return this.http.delete<Comment>(`http://localhost:3000/api/publication/deleteComment/${publicationId}`, { "commentId": commentId}).pipe(
-      //      catchError(error => throwError(error.error.message)));
-    //}
 
 }

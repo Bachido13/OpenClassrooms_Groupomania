@@ -18,6 +18,8 @@ export class AccueilComponent implements OnInit {
   ngOnInit() {
     this.publications$ = this.publicationsService.publications$
     this.publicationsService.getAllPublications()
+    console.log(this.publications$);
+    
   }
 
 }

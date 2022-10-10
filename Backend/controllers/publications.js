@@ -9,6 +9,7 @@ exports.createPublication = (req, res, next) => {
     const publication = new Publication({
         ...publicationObject,
         userId: req.auth.userId,
+        author: req.auth.userId,
     });
     if (req.file && req.file.filename) {
         publication.imageUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
@@ -47,7 +48,7 @@ exports.modifyPublication = (req, res, next) => {
     delete publicationObject._userId;
     Publication.findOne({ _id: req.params.id })
         .then((publication) => {
-            if (publication.userId != req.auth.userId) {
+            if (publication.userId != req.auth.userId && !req.auth.isAdmin) {
                 res.status(401).json({ message: 'Non-autorisé' });
             } else {
                 if (req.file && publication.imageUrl) {
@@ -73,36 +74,36 @@ exports.modifyPublication = (req, res, next) => {
 //Supprimer un post
 exports.deletePublication = (req, res, next) => {
     Publication.findOne({ _id: req.params.id })
-        .then(publication => {
-            if (publication.userId != req.auth.userId) {
-                res.status(401).json({ message: 'Non-autorisé' });
-            } else {
-                const filename = publication.imageUrl.split('/images/')[1];
-                fs.unlink(`images/${filename}`, () => {
-                    Publication.deleteOne({ _id: req.params.id })
-                        .then(() => {
-                            res.status(200).json({ message: 'Objet supprimé !' })
-                        })
-                        .catch(error => res.status(401).json({ error }));
-                });
-            }
-        })
-        .catch((error) => {
-            res.status(500).json({ error: error });
-        });
+    .then(publication => {
+        if (publication.userId != req.auth.userId && !req.auth.isAdmin ) {
+            res.status(401).json({ message: 'Non-autorisé' });
+        } else {
+            const filename = publication.imageUrl.split('/images/')[1];
+            fs.unlink(`images/${filename}`, () => {
+                Publication.deleteOne({ _id: req.params.id })
+                    .then(() => {
+                        res.status(200).json({ message: 'Objet supprimé !' })
+                    })
+                    .catch(error => res.status(401).json({ error }));
+            });
+        }
+    })
+    .catch((error) => {
+        res.status(500).json({ error: error });
+    });
 };
 
 //Obtenir tous les posts
 exports.getAllPublication = (req, res, next) => {
-    Publication.find().then(
-        (publications) => {
-            res.status(200).json(publications);
-        }
-    ).catch(
-        (error) => {
-            res.status(400).json({ error: error });
-        }
-    );
+    Publication.find()
+    .populate({
+        path: 'author',
+        options: { select: "pseudo" }
+      }) // This populates the author id with actual author information!
+      .exec((err, publications) => {
+        if (err) return res.status(500).send(new Error('Database error!'));
+        return res.status(200).json(publications);
+      });
 };
 
 //Liker un post
@@ -138,84 +139,3 @@ exports.likePublication = (req, res, next) => {
             return res.status(500).json({ error })
         })
 }
-
-//commenter un post
-exports.commentPublication = (req, res) => {
-    if (!ObjectID.isValid(req.params.id))
-        return res.status(400).send("ID unknow : " + req.params.id);
-
-    try {
-        return Publication.findByIdAndUpdate(
-            req.params.id,
-            {
-                $push: {
-                    comments: {
-                        commenterId: req.body.commenterId,
-                        commenterName: req.body.commenterName,
-                        text: req.body.text,
-                        createdAt: new Date().getTime(),
-                    },
-                },
-            },
-            { new: true },
-            (err, docs) => {
-                if (!err) return res.send(docs);
-                else return res.status(400).send(err);
-            }
-        );
-    } catch (err) {
-        return res.status(400).send(err);
-    }
-};
-
-//modifier un commentaire
-exports.modifyComment = (req, res) => {
-    const token = req.cookies.jwt;
-    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
-    const role = decodedToken.role;
-
-    try {
-        return Publication.findById(req.params.id, (err, docs) => {
-            const theComment = docs.comments.find((comment) =>
-                comment._id.equals(req.body.commentId)
-            );
-
-            if (!theComment) return res.status(404).send("Comment not found");
-            if (decodedToken.id != theComment.commenterId && role != "ADMIN") 
-            return res.status(403).send("Vous n'avez pas le droit de modifier ce commentaire");
-            theComment.text = req.body.text;
-
-            return docs.save((err) => {
-                if (!err) return res.status(200).send(docs);
-                return res.status(500).send(err);
-            });
-        });
-    } catch (err) {
-        return res.status(400).send(err);
-    }
-};
-
-//supprimer un commentaire
-exports.deleteComment = (req, res) => {
-    const token = req.cookies.jwt;
-    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
-    const role = decodedToken.role;
-
-    try {
-        return Publication.findById(req.params.id, (err, docs) => {
-            const theComment = docs.comments.find((comment) =>
-                comment._id.equals(req.body.commentId)
-            );
-
-            if (!theComment) return res.status(404).send("Comment not found");
-            if (decodedToken.id != theComment.commenterId && role != "ADMIN") return res.status(403).send("Vous n'avez pas le droit de modifier ce commentaire");
-
-            Publication.remove(theComment, (err, docs) => {
-                if (!err) res.send(docs);
-                else console.log("Delete error : " + err);
-            });
-        });
-    } catch (err) {
-        return res.status(400).send(err);
-    }
-};

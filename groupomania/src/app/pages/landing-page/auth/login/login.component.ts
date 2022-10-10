@@ -49,7 +49,6 @@ export class LoginComponent {
     }
   ];
 
-
   onLogin(user: any) {
     this.authService.loginUser(user.email, user.password).pipe(
       tap(() => {

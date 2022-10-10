@@ -52,10 +52,7 @@ exports.updateUser = async (req, res) => {
 
 //supprimer un utilisateur
 exports.deleteUser = async (req, res) => {
-  const token = req.cookies.jwt;
-  const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
-  const role = decodedToken.role;
-  if (decodedToken.id != req.params.id && role != "ADMIN")
+  if (req.auth.userId != req.params.id && !req.auth.isAdmin)
     return res.status(400).send("Vous n'avez pas le droit de supprimer cet utilisateur");
 
   try {

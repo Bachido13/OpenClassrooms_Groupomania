@@ -6,7 +6,7 @@ const userSchema = mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     pseudo: { type: String, required: true },
-    photo: { type: String, required: true }
+    isAdmin: { type: Boolean, default: false}
 });
 
 userSchema.plugin(uniqueValidator); //Utilisation du plugin Mongoose, vérifie que l'email est unique

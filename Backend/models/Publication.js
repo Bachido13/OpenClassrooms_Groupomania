@@ -5,17 +5,10 @@ const publicationSchema = mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
     imageUrl: { type: String },
-    createdDate: {type: Date },
+    createdDate: {type: Date, default: Date.now },
     likes: { type: Number, default: 0 },
     usersLiked: { type: [String], default: [] },
-    comment: { type: [{
-            commenterId: { type: String },
-            commenterName: { type: String },
-            text: { type: String },
-            createdAt: Date
-            }
-        ]
-    }
+    author: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
 });
 
 module.exports = mongoose.model('Publication', publicationSchema);

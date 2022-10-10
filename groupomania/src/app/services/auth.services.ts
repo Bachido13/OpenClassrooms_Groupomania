@@ -15,6 +15,7 @@ export class AuthService {
     private authToken = '';
     private userId = '';
     private userPseudo = '';
+    private isAdmin = false;
 
     createUser(email: string, password: string, pseudo: string) {
         return this.http.post<{ message: string }>('http://localhost:3000/api/auth/signup', { email: email, password: password, pseudo: pseudo });   
@@ -28,15 +29,16 @@ export class AuthService {
         return this.userId;
     }
 
-    getUserPseudo() {
-        return this.userPseudo;
+    getIsAdmin() {
+        return this.isAdmin;
     }
 
     loginUser(email: string, password: string) {
-        return this.http.post<{ userId: string, token: string }>('http://localhost:3000/api/auth/login', { email: email, password: password }).pipe(
-            tap(({ userId, token }) => {
+        return this.http.post<{ userId: string, token: string, isAdmin: boolean }>('http://localhost:3000/api/auth/login', { email: email, password: password }).pipe(
+            tap(({ userId, token, isAdmin }) => {
                 this.userId = userId;
                 this.authToken = token;
+                this.isAdmin = isAdmin;
                 console.log(this.authToken);
                 
                 this.isAuth$.next(true);
@@ -47,7 +49,7 @@ export class AuthService {
     logout() {
         this.authToken = '';
         this.userId = '';
-        this.userPseudo = '';
+        this.isAdmin = false;
         this.isAuth$.next(false);
         this.router.navigate(['connexion']);
     }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Publication } from '../../core/models/publications.model';
 import { PublicationsService } from '../../services/publications.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,8 +13,9 @@ import { catchError, EMPTY, map, Observable, of, switchMap, take, tap } from 'rx
 })
 export class DetailsPublicationComponent implements OnInit {
 
-  loading!: boolean;
-  publication$!: Observable<Publication>
+  publication!: Publication;
+  isAdmin!: boolean;
+  publication$!: Observable<Publication>;
   userId!: string;
   liked!: boolean;
   errorMessage!: string;
@@ -25,16 +27,15 @@ export class DetailsPublicationComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    this.isAdmin = this.auth.getIsAdmin()
     this.userId = this.auth.getUserId();
-    this.loading = true;
-    this.userId = this.auth.getUserId();
+    //this.userPseudo = this.publication.author?.pseudo;
     this.publication$ = this.route.params.pipe(
       map(params => params['id']),
       switchMap(id => this.publicationsService.getPublicationById(id)),
       tap(publication => {
         console.log(publication);
-        
-        this.loading = false;
+        this.publication = publication;
         if (publication.usersLiked.find(user => user === this.userId)) {
           this.liked = true;
         } 
@@ -50,7 +51,7 @@ export class DetailsPublicationComponent implements OnInit {
           this.liked = liked;
         }),
         map(liked => ({ ...publication, likes: liked ? publication.likes + 1 : publication.likes - 1})),
-        tap(publication => this.publication$ = of(publication))
+        tap(publication => this.publication = publication)
       )),
     ).subscribe();
   }
@@ -67,17 +68,14 @@ export class DetailsPublicationComponent implements OnInit {
   }
 
   onDelete() {
-    this.loading = true;
     this.publication$.pipe(
       take(1),
       switchMap(publication => this.publicationsService.deletePublication(publication._id)),
       tap(message => {
         console.log(message);
-        this.loading = false;
         this.router.navigate(['/accueil']);
       }),
       catchError(error => {
-        this.loading = false;
         this.errorMessage = error.message;
         console.error(error);
         return EMPTY;

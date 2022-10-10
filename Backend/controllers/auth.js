@@ -26,7 +26,10 @@ exports.signup = (req, res, next) => {
                 });
                 user.save()
                     .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-                    .catch(error => res.status(400).json({ error }));
+                    .catch(error => {
+                        console.log(error);
+                        return res.status(400).json({ error })
+                    } );
             })
             .catch(error => res.status(500).json({ error }));
     }
@@ -46,8 +49,10 @@ exports.login = (req, res, next) => {
                 res.status(200).json({
                     userId: user._id,
                     userPseudo: user.pseudo,
+                    isAdmin: user.isAdmin,
                     token: jwt.sign(
-                        { userId: user._id },
+                        { userId: user._id,
+                        isAdmin: user.isAdmin },
                         process.env.JWT_SECRET,
                         { expiresIn: '24h' }
                     )

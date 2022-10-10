@@ -1,5 +1,5 @@
 <div class="publication-card">
-    <p class="userPseudo">{{ publication.userPseudo }}</p>
+    <p class="userPseudo">{{ userPseudo }}</p>
     <h2 class="titre">{{ publication.title | titlecase }}</h2>
     <p class="date">Mis en ligne {{ publication.createdDate | date: 'à HH:mm, le d MMM YYYY' }}</p>
     <p class="description">{{ publication.description }}</p>

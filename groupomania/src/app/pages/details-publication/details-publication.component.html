@@ -1,25 +1,22 @@
-<div class="publication-card" *ngIf="publication$ | async as publication">
-    <h2>{{ publication.title | uppercase }}</h2>
+<div class="publication-card" *ngIf="publication$ | async as Publication">
+    <p class="userPseudo">{{ publication.author?.userPseudo }}</p>
+    <h2>{{ publication.title | titlecase }}</h2>
     <ul class="liens">
-        <li id="back">
-            <i class="fa-solid fa-circle-arrow-left"></i>
-            <button (click)="onBack()">Back</button>
+        <li id="back">            
+            <button (click)="onBack()"><i class="fa-solid fa-circle-arrow-left"></i> Back</button>
         </li>
-        <li id="modifier">
-            <i class="fa-solid fa-pen-to-square"></i>
-            <button (click)="onModify()" *ngIf="userId === publication.userPseudo"> Modifier </button>
+        <li id="modifier">            
+            <button (click)="onModify()" *ngIf="userId === publication.userId || isAdmin" ><i class="fa-solid fa-pen-to-square"></i> Modifier </button>
         </li>
-        <li id="supprimer">
-            <i class="fa-solid fa-trash-can"></i>
-            <button (click)="onDelete()" *ngIf="userId === publication.userPseudo"> Supprimer </button>
+        <li id="supprimer">           
+            <button (click)="onDelete()" *ngIf="userId === publication.userId || isAdmin" ><i class="fa-solid fa-trash-can"></i>Supprimer </button>
         </li>
     </ul>
     <p id="date">Mis en ligne {{ publication.createdDate | date: 'à HH:mm, le d MMM YYYY' }}</p>
     <div id="image">
         <img [src]="publication.imageUrl" [alt]="publication.title">
     </div>
-    <p id="description">{{ publication.description }} Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet enim at atque alias eveniet quos neque a exercitationem aliquid blanditiis! Exercitationem earum reiciendis provident! Temporibus aut rem nulla laboriosam. Ut.<br>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum doloribus nostrum repellat, provident est molestias! Dicta veniam cupiditate vitae fugiat vero, nostrum, sapiente soluta corporis in facilis beatae? Exercitationem, autem.</p>
+    <p id="description">{{ publication.description }} </p>
     <p id="like">
         <button (click)="onLike()"><i class="fa-solid fa-thumbs-up"></i> {{ publication.likes }}</button>
     </p>

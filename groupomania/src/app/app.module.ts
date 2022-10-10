@@ -37,7 +37,7 @@ import { DetailsPublicationComponent } from './pages/details-publication/details
     LandingPageComponent,
     FormsPublicationComponent,
     PublicationComponent,
-    DetailsPublicationComponent
+    DetailsPublicationComponent,
   ],
   imports: [
     BrowserModule,
