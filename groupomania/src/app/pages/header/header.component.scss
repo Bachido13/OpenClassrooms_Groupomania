@@ -19,17 +19,17 @@ header {
     }
 
     .navigation {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
         font-size: 22px;
         padding-top: 10px;
+        position: relative;
 
         nav {
             margin: 0 0 5px 0;
             padding: 0;
             width: 100%;
             display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
 
             a {
@@ -42,8 +42,9 @@ header {
             }
 
             #deconnexion {
-                position: fixed;
-                right: 10px;
+                position: absolute;
+                right: 5px;
+                top: 10px;
             }
 
             .hover,

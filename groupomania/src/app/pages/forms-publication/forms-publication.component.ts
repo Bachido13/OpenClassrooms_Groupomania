@@ -74,7 +74,6 @@ export class FormsPublicationComponent implements OnInit {
     const newPublication = new Publication();
     newPublication.title = this.publicationForm.get('title')!.value;
     newPublication.description = this.publicationForm.get('description')!.value;
-    //newPublication.creatorPseudo = this.auth.getUserPseudo();
     if (this.mode === 'new') {
       this.publicationsService.createPublication(newPublication, this.publicationForm.get('image')!.value).pipe(
         tap(({ message }) => {
