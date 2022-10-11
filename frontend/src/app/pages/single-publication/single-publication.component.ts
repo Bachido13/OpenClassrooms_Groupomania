@@ -35,15 +35,6 @@ export class PublicationComponent implements OnInit {
     this.date = this.publication.createdDate;
     this.buttonText = 'Like !';
   }
-  
-  onLike() {
-    this.publicationsService.likePublication(this.publication._id, !this.liked).pipe(
-        tap(liked => {
-          this.liked = liked;
-        }),
-        map(liked => ({ ...this.publication, likes: liked ? this.publication.likes + 1 : this.publication.likes - 1}))
-    ).subscribe();
-  }
 
   onViewPublication(id: string) {
     console.log(this.publication);

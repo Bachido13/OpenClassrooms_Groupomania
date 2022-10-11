@@ -1,73 +1,69 @@
 header {
     margin: 0;
+}
+
+h1 {
+    margin: 0;
     display: flex;
-    align-items: center;
     justify-content: center;
-    flex-direction: column;
+    align-items: center;
+    width: 100%;
 
-    h1 {
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    img {
         width: 100%;
-
-        img {
-            width: 100%;
-            object-fit: cover;
-        }
+        object-fit: cover;
     }
+}
 
-    .navigation {
-        font-size: 22px;
-        padding-top: 10px;
-        position: relative;
+.navigation {
+    font-size: 22px;
+    padding-top: 10px;
+    position: relative;
 
-        nav {
-            margin: 0 0 5px 0;
-            padding: 0;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+    nav {
+        margin: 0 0 5px 0;
+        padding: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
-            a {
-                margin: 0;
-                padding: 2px 5px;
-                border-radius: 10px 10px;
-                text-decoration: none;
-                background-color: #FFD7D7;
-                color: #4E5166;
-            }
-
-            #deconnexion {
-                position: absolute;
-                right: 5px;
-                top: 10px;
-            }
-
-            .hover,
-            .focus {
-                color: #FD2D01;
-            }
-        }
-
-        button {
+        a {
+            margin: 0;
             padding: 2px 5px;
             border-radius: 10px 10px;
-            margin: 5px 0 0 0;
-            border: 0;
+            text-decoration: none;
             background-color: #FFD7D7;
             color: #4E5166;
-            font-size: 22px;
-        }
-
-        &:hover,
-        &:focus {
-            color: #FD2D01;
         }
     }
+
+    button {
+        padding: 2px 5px;
+        border-radius: 10px 10px;
+        margin: 5px 0 0 0;
+        border: 0;
+        background-color: #FFD7D7;
+        color: #4E5166;
+        font-size: 22px;
+    }
+
+    &:hover,
+    &:focus {
+        color: #FD2D01;
+    }
+}
+
+#deconnexion {
+    position: absolute;
+    right: 5%;
+    top: 10px;
+
+    .hover,
+        .focus {
+            color: #FD2D01;
+        }
 }
 
 @media screen and (min-width:375px) {}
@@ -76,58 +72,53 @@ header {
 
 @media screen and (min-width:768px) {
 
-    header {
+    h1 {
+        width: 80%;
 
-        h1 {
-            width: 80%;
-
-            img {
-                border-bottom-left-radius: 3rem;
-                border-bottom-right-radius: 3rem;
-            }
+        img {
+            border-bottom-left-radius: 3rem;
+            border-bottom-right-radius: 3rem;
         }
-
-        .navigation {
-            margin-top: 25px;
+    }
+    
+    .navigation {
+        nav{
             flex-direction: row;
             justify-content: space-evenly;
-            align-items: baseline;
             width: 100%;
-
-            nav {
-                margin: 0;
-                width: 50%;
-            }
+            margin: 25px 10px 0 10px;
 
             button {
                 margin: 0;
             }
         }
     }
+    
+    #deconnexion {
+        top: 35px;
+    }
 }
 
 @media screen and (min-width:1024px) {
 
-    header {
-        text-align: center;
+    
+    h1 {
+        width: 50%;
+        margin-left: 5%;
+    }
 
-        .navigation {
+    nav {
+        font-size: 1.75rem;
 
-            margin-top: 100px;
-
-            nav {
-                a {
-                    margin: 0 10px;
-                    color: #FFD7D7;
-                    text-decoration: none;
-
-                    &:hover,
-                    &:focus {
-                        text-decoration: underline;
-                    }
-                }
-            }
+        button {
+            font-size: 1.75rem;
         }
+    }
+
+    #deconnexion {
+        right: 18%;
+        top: -60px;
+        font-size: 2rem;
     }
 }
 
@@ -136,11 +127,33 @@ header {
     header {
 
         h1 {
-            width: 60%;
+            width: 40%;
         }
-        
-        .navigation {
-            font-size: 32px;
+
+        nav {
+            font-size: 2rem;
+
+            button {
+                font-size: 2rem;
+            }
+        }
+
+        #deconnexion {
+            font-size: 2.75rem;
+        }
+    }
+}
+
+@media screen and (min-width:2560px) {
+
+    header {
+        h1 {
+            margin-left: 10%;
+        }
+
+        #deconnexion {
+            top: -150px;
+            font-size: 3.5rem;
         }
     }
 }

@@ -1,46 +1,58 @@
 .publication-card {  
     background-color: #FFD7D7;
     border-radius: 20px;
+    padding: 5px 5px 10px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+        padding: 0 20px;
+    }
 
     .userPseudo {
-
+        font-size: 1rem;
+        margin: 5px;
     }
 
     .titre {
         text-align: center;
-
+        color: #FD2D01;
+        margin: 5px 0;
     }
 
     .date {
-
+        font-size: 0.8rem;
+        margin: 0;
     }
 
     .description {
         text-align: center;
+        padding: 0 5px;
+        margin: 0;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
-    .imagePublication {
-        width: 100%;
+    .image {
+        width: 50%;
+
+        .imagePublication {
+            width: 100%;
+        }
     }
 
     .boutons {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin-bottom: 0;
-
-        button {
-            margin: 5px 0px;
-        }
-
-        .pousseLevé {
-            background: none;
-            border: none;
-            color: white;
-        }
+        margin: 5px;
 
         .logo {
-            width: 10%;
+            width: 15%;
             border-radius: 50%;
         }
 
@@ -48,8 +60,60 @@
             background-color: #4e5166;
             font-weight: bold;
             color: #FD2D01;
-            height: 15px;
+            margin: 5px 0px;
+            padding: 2px 15px;
+            border-radius: 20px;
+
+            :hover,
+            :active {
+                color: white;
+                font-size: 0.9rem;
+            }
         }
     }
 }
+
+@media screen and (min-width:375px) {}
+
+@media screen and (min-width:425px) {}
+
+@media screen and (min-width:768px) {
+
+    .userPseudo {
+        font-size: 1.25rem;
+    }
+
+    .titre {
+        font-size: 1.75rem;
+    }
+
+    .description {
+        font-size: 1.25rem;
+    }
+
+    .boutons{
+        .logo {
+            width: 20%;
+        }
+
+        .detail {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+@media screen and (min-width:1024px) {
+
+    .publication-card {
+        padding: 5px 10px 10px 10px;
+
+    }
+}
+
+@media screen and (min-width:1440px) {
+
+
+}
+
+@media screen and (min-width:2560px) {}
     

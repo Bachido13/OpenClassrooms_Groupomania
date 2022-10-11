@@ -1,6 +1,6 @@
 main {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
 
     app-single-publication {
@@ -21,3 +21,32 @@ main {
         }
     }
 }
+
+@media screen and (min-width:375px) {}
+
+@media screen and (min-width:425px) {}
+
+@media screen and (min-width:768px) {}
+
+@media screen and (min-width:1024px) {
+
+    main {
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: baseline;
+
+        app-single-publication {
+            width: 45%;
+        }
+    }
+}
+
+@media screen and (min-width:1440px) {
+
+    app-single-publication {
+        width: 30%;
+    }
+}
+
+@media screen and (min-width:2560px) {}

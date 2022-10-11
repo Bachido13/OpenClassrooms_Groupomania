@@ -12,6 +12,7 @@ export class AccueilComponent implements OnInit {
 
   publications$!: Observable<Publication[]>;
   errorMsg!: string;
+  reverseDate: Array<number> = [];
 
   constructor(private publicationsService: PublicationsService) { }
 
@@ -19,7 +20,6 @@ export class AccueilComponent implements OnInit {
     this.publications$ = this.publicationsService.publications$
     this.publicationsService.getAllPublications()
     console.log(this.publications$);
-    
   }
 
 }

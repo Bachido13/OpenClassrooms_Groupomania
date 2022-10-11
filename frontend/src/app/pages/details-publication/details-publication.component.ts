@@ -29,7 +29,6 @@ export class DetailsPublicationComponent implements OnInit {
   ngOnInit() {
     this.isAdmin = this.auth.getIsAdmin()
     this.userId = this.auth.getUserId();
-    //this.userPseudo = this.publication.author?.pseudo;
     this.publication$ = this.route.params.pipe(
       map(params => params['id']),
       switchMap(id => this.publicationsService.getPublicationById(id)),
