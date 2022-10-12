@@ -2,13 +2,18 @@
   box-sizing: border-box;
   width: 100%; 
   background-color: hsla(0, 100%, 92%, 0.25);
+  margin-bottom: 25px;
   
+  .userPseudo {
+    margin: 0;
+    padding: 10px 0 0 15px;
+  }
+
   h2 {
     color: #FD2D01;
     text-align: center;
     padding: 1rem 0.6rem;
-    ;
-
+    margin: 0;
   }
 
   button {
@@ -78,6 +83,13 @@
       color: green;
       padding-bottom: 1.2rem;
     }
+
+    .logo {
+      width: 10%;
+      position: relative;
+      bottom: 2%;
+      right: 35%;
+    }
   }
 }
 
@@ -85,6 +97,7 @@
   .publication-card {
     box-sizing: border-box;
     box-shadow: silver 4px 4px 20px;
+    margin-top: 20px;
 
 
     h2 {
@@ -110,6 +123,7 @@
     #image {
       display: flex;
       justify-content: center;
+      border: solid 10px white;
     }
 
     #description {
@@ -127,14 +141,60 @@
   
   .publication-card {
     width: 80%;
-    margin: 20px auto;
+    margin: auto;
     padding: 10px 30px;
+
+    .userPseudo {
+      font-size: 1.25rem;
+    }
+
     h2 {
       margin-bottom: 0;
     }
+
     p {
       font-weight: 300;
       font-size: 16px;
     }
   }
 }
+
+@media screen and (min-width:1440px) {
+
+  .userPseudo {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  .liens {
+    font-size: 2rem;
+
+    button {
+      font-size: 2rem;
+    }
+  }
+
+  #date {
+    font-size: 1.75rem;
+  }
+
+  #imgage {
+    border: 20px;
+  }
+
+  #description {
+    font-size: 2.5rem;
+  }
+
+  #like {
+    button {
+      font-size: 3.5rem;
+    }
+    
+  }
+}
+
+@media screen and (min-width:2560px) {}

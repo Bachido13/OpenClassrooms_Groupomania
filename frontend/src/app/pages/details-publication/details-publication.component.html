@@ -1,23 +1,24 @@
 <div class="publication-card" *ngIf="publication$ | async as Publication">
-    <p class="userPseudo">{{ publication.author?.userPseudo }}</p>
+    <p class="userPseudo" *ngIf="userPseudo">Créée par <strong>{{ userPseudo | titlecase }}</strong></p>
     <h2>{{ publication.title | titlecase }}</h2>
     <ul class="liens">
         <li id="back">            
             <button (click)="onBack()"><i class="fa-solid fa-circle-arrow-left"></i> Back</button>
         </li>
-        <li id="modifier">            
-            <button (click)="onModify()" *ngIf="userId === publication.userId || isAdmin" ><i class="fa-solid fa-pen-to-square"></i> Modifier </button>
+        <li id="modifier" *ngIf="userId === publication.userId || isAdmin">            
+            <button (click)="onModify()"  ><i class="fa-solid fa-pen-to-square"></i> Modifier </button>
         </li>
-        <li id="supprimer">           
-            <button (click)="onDelete()" *ngIf="userId === publication.userId || isAdmin" ><i class="fa-solid fa-trash-can"></i>Supprimer </button>
+        <li id="supprimer" *ngIf="userId === publication.userId || isAdmin">           
+            <button (click)="onDelete()"  ><i class="fa-solid fa-trash-can"></i>Supprimer </button>
         </li>
     </ul>
-    <p id="date">Mis en ligne {{ publication.createdDate | date: 'à HH:mm, le d MMM YYYY' }}</p>
+    <p id="date">Mis en ligne <strong>{{ publication.createdDate | date: 'à HH:mm, le d MMM YYYY' }}</strong></p>
     <div id="image">
         <img [src]="publication.imageUrl" [alt]="publication.title">
     </div>
     <p id="description">{{ publication.description }} </p>
     <p id="like">
         <button (click)="onLike()"><i class="fa-solid fa-thumbs-up"></i> {{ publication.likes }}</button>
+        <img src="../../../assets/img/fav-icon_B&W.png" alt="logo de groupomania" class="logo">
     </p>
 </div>

@@ -32,21 +32,31 @@ main {
 
     main {
         flex-direction: row-reverse;
-        flex-wrap: wrap;
+        flex-wrap: wrap-reverse;
         justify-content: space-evenly;
         align-items: baseline;
 
         app-single-publication {
             width: 45%;
+            margin: 25px;
         }
     }
 }
 
 @media screen and (min-width:1440px) {
 
-    app-single-publication {
-        width: 30%;
+    main {
+        app-single-publication {
+            width: 30%;
+        }
     }
 }
 
-@media screen and (min-width:2560px) {}
+@media screen and (min-width:2560px) {
+
+    main {
+        app-single-publication {
+            width: 25%;
+        }
+    }
+}

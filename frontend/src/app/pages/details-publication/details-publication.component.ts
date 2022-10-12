@@ -19,6 +19,7 @@ export class DetailsPublicationComponent implements OnInit {
   userId!: string;
   liked!: boolean;
   errorMessage!: string;
+  userPseudo!: string;
 
 
   constructor(private publicationsService: PublicationsService,
@@ -35,6 +36,7 @@ export class DetailsPublicationComponent implements OnInit {
       tap(publication => {
         console.log(publication);
         this.publication = publication;
+        this.userPseudo = this.publication.author?.pseudo;
         if (publication.usersLiked.find(user => user === this.userId)) {
           this.liked = true;
         } 

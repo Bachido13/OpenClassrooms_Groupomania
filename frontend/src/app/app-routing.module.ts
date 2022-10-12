@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'publication/:id', component: DetailsPublicationComponent, canActivate: [AuthGuard] },
   { path: 'create', component: FormsPublicationComponent, canActivate: [AuthGuard] },
   { path: 'modify-publication/:id', component: FormsPublicationComponent, canActivate: [AuthGuard] },
-  { path: '', pathMatch: 'full', redirectTo: 'groupomania'},
+  { path: '', pathMatch: 'full', redirectTo: 'accueil'},
   { path: '**', redirectTo: 'groupomania' }
 ];
 
