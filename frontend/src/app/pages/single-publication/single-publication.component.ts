@@ -37,8 +37,6 @@ export class PublicationComponent implements OnInit {
   }
 
   onViewPublication(id: string) {
-    console.log(this.publication);
-    
     this.router.navigateByUrl(`publication/${this.publication._id}`)
   }
 }

@@ -14,7 +14,6 @@ export class AuthService {
     isAuth$ = new BehaviorSubject<boolean>(false);
     private authToken = '';
     private userId = '';
-    private userPseudo = '';
     private isAdmin = false;
 
     createUser(email: string, password: string, pseudo: string) {

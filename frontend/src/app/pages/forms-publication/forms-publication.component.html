@@ -1,5 +1,5 @@
 <div class="form-card">
-    <h2 *ngIf="initEmptyForm">Nouvelle publication</h2>
+    <h2 *ngIf="!initModifyForm">Nouvelle publication</h2>
     <form [formGroup]="publicationForm" *ngIf="formInstanciated">
         <div class="form-group">
             <label for="title">Titre</label>

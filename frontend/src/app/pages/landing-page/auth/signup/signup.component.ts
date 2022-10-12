@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AbstractControl, FormGroup, ValidationErrors} from '@angular/forms';
+import {AbstractControl, FormGroup } from '@angular/forms';
 import {FormlyFieldConfig} from '@ngx-formly/core';
 import { AuthService } from '../../../../services/auth.services';
 import { catchError, EMPTY, tap, switchMap, pipe } from 'rxjs';
@@ -72,7 +72,7 @@ export class SignupComponent {
   }
 
   IpValidator(control: AbstractControl): any {
-    return null; ///(\d{1,3}\.){3}\d{1,3}/.test(control.value) ? null : { 'email': true };
+    return null; 
   }
   
 }
