@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import {FormlyFieldConfig} from '@ngx-formly/core';
+import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.services';
+import { AuthService } from '../../../../../core/services/auth.services';
 import { catchError, EMPTY, tap } from 'rxjs';
 
 @Component({
@@ -52,7 +52,7 @@ export class LoginComponent {
   onLogin(user: any) {
     this.authService.loginUser(user.email, user.password).pipe(
       tap(() => {
-        this.router.navigate(['/accueil']);
+        this.router.navigate(['/publication/accueil']);
       }),
       catchError(error => {
         console.log(error.error.error);

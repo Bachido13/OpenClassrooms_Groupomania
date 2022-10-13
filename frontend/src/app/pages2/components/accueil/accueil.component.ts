@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Publication } from '../../core/models/publications.model';
-import { PublicationsService } from '../../services/publications.service';
+import { Publication } from '../../../core/models/publications.model';
+import { PublicationsService } from '../../../core/services/publications.service';
 import { Observable, tap, catchError } from 'rxjs';
 
 @Component({

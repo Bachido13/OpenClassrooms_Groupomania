@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, shareReplay } from 'rxjs';
-import { AuthService } from 'src/app/services/auth.services';
-import { User } from '../../core/models/user.model'; 
+import { AuthService } from 'src/app/core/services/auth.services';
+import { User } from '../../models/user.model'; 
 
 
 @Component({
@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onAddNewPublication() {
-    this.router.navigateByUrl('/create');
+    this.router.navigateByUrl('/publication/create');
   }
 
   onLogout() {

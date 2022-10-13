@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {AbstractControl, FormGroup } from '@angular/forms';
 import {FormlyFieldConfig} from '@ngx-formly/core';
-import { AuthService } from '../../../../services/auth.services';
+import { AuthService } from '../../../../../core/services/auth.services';
 import { catchError, EMPTY, tap, switchMap, pipe } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -59,7 +59,7 @@ export class SignupComponent {
     this.authService.createUser(user.email, user.password, user.pseudo).pipe(
       switchMap(() => this.authService.loginUser(user.email, user.password)),
       tap(() => {
-        this.router.navigate(['/accueil']);
+        this.router.navigate(['/publication/accueil']);
       }),
       catchError(error => {
         console.log(error);

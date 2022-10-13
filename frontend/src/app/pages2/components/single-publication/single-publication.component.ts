@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Publication } from '../../core/models/publications.model';
-import { PublicationsService } from '../../services/publications.service';
+import { Publication } from '../../../core/models/publications.model';
+import { PublicationsService } from '../../../core/services/publications.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../services/auth.services';
+import { AuthService } from '../../../core/services/auth.services';
 import { map, Observable, of, switchMap, take, tap } from 'rxjs';
 
 @Component({

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Publication } from '../core/models/publications.model';
+import { Publication } from '../models/publications.model';
 import { Observable, catchError, throwError, tap, Subject, of, mapTo } from 'rxjs';
 import { AuthService } from './auth.services';
 

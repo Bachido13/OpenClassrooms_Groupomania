@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Publication } from '../../core/models/publications.model';
-import { PublicationsService } from '../../services/publications.service';
+import { Publication } from '../../../core/models/publications.model';
+import { PublicationsService } from '../../../core/services/publications.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../../services/auth.services';
+import { AuthService } from '../../../core/services/auth.services';
 import { catchError, EMPTY, map, Observable, of, switchMap, take, tap } from 'rxjs';
 
 @Component({
@@ -58,13 +58,13 @@ export class DetailsPublicationComponent implements OnInit {
   }
 
   onBack() {
-    this.router.navigate(['/accueil']);
+    this.router.navigate(['publication/accueil']);
   }
 
   onModify() {
     this.publication$.pipe(
       take(1),
-      tap(publication => this.router.navigate(['/modify-publication', publication._id]))
+      tap(publication => this.router.navigate(['publication/modify', publication._id]))
     ).subscribe();
   }
 
@@ -74,7 +74,7 @@ export class DetailsPublicationComponent implements OnInit {
       switchMap(publication => this.publicationsService.deletePublication(publication._id)),
       tap(message => {
         console.log(message);
-        this.router.navigate(['/accueil']);
+        this.router.navigate(['publication/accueil']);
       }),
       catchError(error => {
         this.errorMessage = error.message;

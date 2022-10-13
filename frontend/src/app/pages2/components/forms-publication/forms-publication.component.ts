@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { catchError, EMPTY, switchMap, tap } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Publication } from '../../core/models/publications.model';
-import { PublicationsService } from '../../services/publications.service';
-import { AuthService } from 'src/app/services/auth.services';
+import { Publication } from '../../../core/models/publications.model';
+import { PublicationsService } from '../../../core/services/publications.service';
+import { AuthService } from 'src/app/core/services/auth.services';
 
 
 @Component({
@@ -78,7 +78,7 @@ export class FormsPublicationComponent implements OnInit {
       this.publicationsService.createPublication(newPublication, this.publicationForm.get('image')!.value).pipe(
         tap(({ message }) => {
           console.log(message);
-          this.router.navigate(['/accueil']);
+          this.router.navigate(['publication/accueil']);
         }),
         catchError(error => {
           console.error(error);
@@ -90,7 +90,7 @@ export class FormsPublicationComponent implements OnInit {
       this.publicationsService.modifyPublication(this.publication._id, newPublication, this.publicationForm.get('image')!.value).pipe(
         tap(({ message }) => {
           console.log(message);
-          this.router.navigate(['/accueil']);
+          this.router.navigate(['publication/accueil']);
         }),
         catchError(error => {
           console.error(error);
